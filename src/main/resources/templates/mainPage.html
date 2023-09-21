@@ -2,18 +2,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
-    <title>Pium</title>
-    <style>
-        .header-buttons {
-            display: flex;
-            justify-content: flex-end; /* 링크들을 오른쪽으로 정렬 */
-            align-items: center;
-            margin-right: 20px;
-            margin-top: 10px;
-        }
-=======
-    <title>메인 페이지</title>
+
+    <title>PIUM</title>
+
     <style>
         .header-buttons {
             text-align: right;
@@ -21,7 +12,6 @@
             margin-top: 10px;
         }
 
->>>>>>> origin/matchingBoardNewNew
         .header-buttons a {
             text-decoration: none;
             padding: 5px 10px;
@@ -46,24 +36,18 @@
             padding: 10px;
             border: 1px solid #000;
         }
+
         .links-section {
-<<<<<<< HEAD
-=======
             position: fixed; /* 요소를 고정합니다. */
->>>>>>> origin/matchingBoardNewNew
+            top: 140px;
+            left: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 10px;
-<<<<<<< HEAD
-            border: 2px solid #ddd; /* 밝은 회색으로 변경 */
-            /*background-color: #f5f5f5; !* 배경색 변경 (예: 회색) *!*/
-            margin: 10px 0px 0px 20px; /* 맨 위 여백 추가 */
-=======
             /*background-color: #f5f5f5; !* 배경색 변경 (예: 회색) *!*/
             margin-top: 10px; /* 맨 위 여백 추가 */
             border: 2px solid #ddd; /* 밝은 회색으로 변경 */
->>>>>>> origin/matchingBoardNewNew
             border-radius: 10px; /* 둥근 사각형 테두리 추가 */
         }
 
@@ -107,10 +91,7 @@
 
         .search_box {
             margin-bottom: 20px;
-<<<<<<< HEAD
-=======
-            margin-left: 130px;
->>>>>>> origin/matchingBoardNewNew
+            margin-left: 160px;
         }
 
         .sch_group select, .sch_group input {
@@ -129,12 +110,8 @@
         }
 
         table.tb {
-<<<<<<< HEAD
-            width: 100%;
-=======
-            margin-left: 130px;
-            width: 90%;
->>>>>>> origin/matchingBoardNewNew
+            margin-left: 160px;
+            width: 87%;
             border-collapse: collapse;
         }
 
@@ -184,46 +161,29 @@
 <div id="centeredDiv" class="page_tits">
     <h3>Pium</h3>
 </div>
-<<<<<<< HEAD
-<div class="header-buttons">
-    <a href="/board/write" style="margin-right: auto;">글작성</a>
-    <a href="http://localhost:9090/login">로그인</a>
-    <a href="http://localhost:9090/">회원가입</a>
-    <a href="#">마이페이지</a>
-    <a href="#">로그아웃</a>
-</div>
-=======
->>>>>>> origin/matchingBoardNewNew
 
 <div class="container">
 
     <div class="links-section">
         <a>카테고리</a>
-<<<<<<< HEAD
+
         <a class="link" href="http://localhost:9090/category/1/list">〈공지사항〉 </a>
         <a class="link" href="http://localhost:9090/category/2/list">매칭게시판</a>
-        <a class="link" href="http://localhost:9090/category/3/list">리뷰게시판</a>
-        <a class="link" href="http://localhost:9090/category/4/list">번개구해요</a>
-        <a class="link" href="http://localhost:9090/category/5/list">광고게시판</a>
-        <a class="link" href="http://localhost:9090/category/7/list">자유게시판</a>
+        <a class="link" href="http://localhost:9090/category/6/list">리뷰게시판</a>
+        <a class="link" href="http://localhost:9090/category/3/list">번개구해요</a>
+        <a class="link" href="http://localhost:9090/category/4/list">광고게시판</a>
+        <a class="link" href="http://localhost:9090/category/5/list">자유게시판</a>
     </div>
-    <div class="content">
-        <section>
 
-=======
-        <a class="link" href="https://www.naver.com">naver</a>
-        <a class="link" href="https://www.daum.net">daum</a>
-        <a class="link" href="https://www.google.co.kr">google</a>
-        <a class="link" href="https://notion.so">notion</a>
-        <a class="link" href="https://github.com">github</a>
-    </div>
     <div class="content">
         <section>
             <div class="header-buttons">
+                <!--    <a href="http://localhost:9090/login">로그인</a>-->
+                <!--    <a href="http://localhost:9090/">회원가입</a>-->
                 <a href="#">마이페이지</a>
                 <a href="#">로그아웃</a>
             </div>
->>>>>>> origin/matchingBoardNewNew
+
             <div class="search_box">
                 <form id="searchForm" onsubmit="return false;" autocomplete="off">
                     <div class="sch_group fl">
@@ -237,71 +197,60 @@
                 </form>
             </div>
 
-<<<<<<< HEAD
             <table class="tb tb_col">
+
                 <colgroup>
-                    <col style="width:80px;"/>
+                    <col style="width:70px;"/>
+                    <col style="width:90px;"/>
                     <col style="width:auto;"/>
-                    <col style="width:10%;"/>
+                    <col style="width:150px;"/>
+                    <col style="width:80px;"/>
                     <col style="width:80px;"/>
                     <col style="width:80px;"/>
                     <col style="width:15%;"/>
                 </colgroup>
-                <thead>
-                    <tr>
-                        <th scope="col">번호</th>
-                        <th scope="col">제목</th>
-                        <th scope="col">작성자</th>
-                        <th scope="col">추천</th>
-                        <th scope="col">댓글</th>
-                        <th scope="col">등록일</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="board : ${boards}">
-                        <td th:text="${board.boardId}"></td>
-                        <td>
-                            <a th:href="@{'/board/' + ${board.boardId}}">[[${board.title}]]</a>
-                        </td>
-                        <td th:text="${board.username}"></td>
-                        <td th:text="${board.likeCnt}"></td>
-                        <td th:text="${board.commentCount}"></td>
-                        <td th:text="${board.createdDate}"></td>
-                    </tr>
-=======
 
-            <table class="tb tb_col">
-                <colgroup>
-                    <col style="width:80px;"/><col style="width:7.5%;"/><col style="width:auto;"/><col style="width:10%;"/><col style="width:7.5%;"/><col style="width:15%;"/>
-                </colgroup>
                 <thead>
                 <tr>
                     <th scope="col">번호</th>
                     <th scope="col">매칭</th>
                     <th scope="col"><a href="/board">제목</a></th>
                     <th scope="col">작성자</th>
+                    <th scope="col">추천</th>
+                    <th scope="col">댓글수</th>
                     <th scope="col">조회수</th>
                     <th scope="col">등록일</th>
                 </tr>
-                <tr>
-                    <th scope="col">여긴</th>
-                    <th scope="col">그냥</th>
-                    <th scope="col">타임리프로 반복문돌려서</th>
-                    <th scope="col">값넣으면</th>
-                    <th scope="col">될</th>
-                    <th scope="col">것같음</th>
-                </tr>
                 </thead>
                 <tbody>
-                <!-- Your table rows here -->
->>>>>>> origin/matchingBoardNewNew
+                <tr>
+                <tr th:if="${not #lists.isEmpty( boards )}" th:each="board : ${boards}">
+                    <td class="tl">
+                        <a th:href="@{'/board/' + ${board.boardId}}" th:text="${board.boardId}"></a></td>
+                    <td th:text="${board.participate == false ? '매칭중' : (board.participate == true ? '매칭완료' : '')}"></td>
+                    <td> <a th:href="@{'/board/' + ${board.boardId}}" th:text="${board.title}"></a></td>
+                    <td th:text="${board.username}"></td>
+                    <td th:text="${board.likeCnt}"></td>
+                    <td th:text="${board.commentCount}"></td>
+                    <td th:text="${board.viewCnt}"></td>
+                    <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm' )}"></td>
+                </tr>
+
+                <tr th:unless="${not #lists.isEmpty( boards )}">
+                    <td colspan="8">
+                        <div class="no_data_msg">검색된 결과가 없습니다.</div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
 
             <!-- 페이지 숫자 및 클릭 이벤트 추가 -->
             <div class="paging">
-                <a href="#" class="page_bt first" style="width:20%;">첫 페이지</a>
-                <a href="#" class="page_bt prev" style="width:20%;">이전 페이지</a>
+
+<!--                <a href="#" class="page_bt first" style="width:100px;" >첫 페이지</a>-->
+<!--                <a href="#" class="page_bt prev" style="width:100px;" >이전 페이지</a>-->
+<!--                <a href="#" class="page_bt next" style="width:100px;" >다음 페이지</a>-->
+<!--                <a href="#" class="page_bt last" >마지막 페이지</a>-->
                 <p>
                     <span class="on">1</span>
                     <span class="page-number">2</span>
@@ -314,16 +263,16 @@
                     <span class="page-number">9</span>
                     <span class="page-number">10</span>
                 </p>
-                <a href="#" class="page_bt next">다음 페이지</a>
-                <a href="#" class="page_bt last">마지막 페이지</a>
+                <a href="#" class="page_bt first" style="width:100px;" >첫 페이지</a>
+                <a href="#" class="page_bt prev" style="width:100px;" >이전 페이지</a>
+                <a href="#" class="page_bt next" style="width:100px;" >다음 페이지</a>
+                <a href="#" class="page_bt last" >마지막 페이지</a>
             </div>
 
             <p class="btn_set tr">
-<<<<<<< HEAD
-                <a href="/board/write" class="btns btn_st3 btn_mid">글작성</a>
-=======
+
                 <a href="/board/form" class="btns btn_st3 btn_mid">글작성</a>
->>>>>>> origin/matchingBoardNewNew
+
             </p>
 
         </section>

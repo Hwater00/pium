@@ -5,24 +5,45 @@
     <title>Pium</title>
     <style>
         .header-buttons {
-            font-family: Arial, sans-serif;
+            Height: 40px;
             display: flex;
             justify-content: flex-end; /* 링크들을 오른쪽으로 정렬 */
             align-items: center;
             margin-right: 20px;
-            margin-top: 10px;
+            margin-top: 20px;
+            margin-left: 195px;
         }
         .header-buttons a {
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 5px 10px;
             margin-left: 10px;
             background-color: #98d583;
             color: #fff;
             border-radius: 5px;
         }
-
-        .header-buttons a:nth-child(1) {
-            margin-left: 20px; /* 첫 번째 링크의 왼쪽 마진을 제거하여 왼쪽 정렬 */
+        .header-buttons .left-align {
+            margin-right: auto; /* 왼쪽 정렬 요소를 오른쪽으로 밀어냄 */
+            background-color: transparent; /* 배경색을 투명으로 설정 */
+        }
+        .search_box {
+            font-size: 16px;
+            display: flex;
+            justify-content: flex-end; /* 링크들을 오른쪽으로 정렬 */
+            align-items: center;
+        }
+        .sch_group {
+            text-align: left;
+            margin-top: 3px;
+        }
+        input[type="text"] {
+            font-size: 16px;
+            border: 1px solid #ccc; /* 회색 테두리 추가 */
+            height: 29px; /* 높이 설정 */
+            padding-left: 5px; /* 왼쪽 여백 추가 */
+            margin-top: -2px; /* 위로 2px 이동 이긴한데 안먹음; */
+        }
+        button {
+            font-size: 16px;
         }
 
         .paging a.page_bt {
@@ -43,12 +64,13 @@
         }
         .links-section {
             display: flex;
+            display: block;
             flex-direction: column;
             align-items: center;
             padding: 10px;
             border: 2px solid #ddd; /* 밝은 회색으로 변경 */
             /*background-color: #f5f5f5; !* 배경색 변경 (예: 회색) *!*/
-            margin: 10px 0px 0px 20px; /* 맨 위 여백 추가 */
+            margin: 0px 0px 0px 20px; /* 맨 위 여백 추가 */
             border-radius: 10px; /* 둥근 사각형 테두리 추가 */
         }
 
@@ -90,12 +112,13 @@
             flex-grow: 1; /* 오른쪽 공간을 채우기 위한 설정 */
         }
         .bt_search {
+
             font-family: Arial, sans-serif;
             background-color: #98d583;
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 5px 10px;
             cursor: pointer;
         }
 
@@ -146,7 +169,7 @@
         }
         /* 스타일링 추가 */
         .post-section {
-            margin-top: 20px;
+            /*margin-top: 20px;*/
             background-color: #fff;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -154,18 +177,26 @@
         }
 
         .post-title {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 30px;
+            margin: 16px 0px 10px 0px
         }
 
-        .post-author, .post-date {
+        .post-author {
+            font-weight: bold;
             font-size: 16px;
-            color: #777;
-            margin-bottom: 10px;
+            margin: 10px 0px 10px 0px;
         }
-
+        .post-date {
+            font-size: 14px;
+            color: #777;
+            margin: 10px 0px 30px 0px;
+        }
         .post-text {
             font-size: 18px;
+        }
+        .post-category {
+            margin: 0px 0px 16px 0px;
+            font-size: 16px;
         }
 
         .comments-section {
@@ -183,18 +214,20 @@
         }
 
         .comment {
-            margin-bottom: 15px;
+            /*margin-bottom: 15px;*/
         }
 
         .comment-author {
             font-weight: bold;
-            margin-right: 10px;
+            margin: 0px 0px 10px 0px;
         }
 
         .comment-text {
             font-size: 16px;
         }
-
+        .comment-date {
+            font-size: 14px;
+        }
         .comment-form {
             margin-top: 20px;
             border-top: 1px solid #ccc;
@@ -219,17 +252,18 @@
             text-decoration: none;
             background-color: #98d583;
             color: #fff;
-            padding: 10px 20px;
+            padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
         }
-        .search_box {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; /* 왼쪽 정렬로 변경 */
+        hr {
+            border: none; /* 기본 테두리 제거 */
+            border-top: 1px solid #ccc; /* 윗 테두리를 회색으로 설정 */
+            margin: 10px 0; /* 위아래 여백 설정 */
         }
+
     </style>
 </head>
 <body>
@@ -272,6 +306,7 @@
         <section class="post-section">
             <!-- 게시글 내용 -->
             <div class="post-content">
+                <p class="post-category" th:text="${board.categoryName}">카테고리 이름</p>
                 <h2 class="post-title" th:text="${board.title}">게시글 제목</h2>
                 <p class="post-author" th:text="'작성자: ' + ${board.username}">작성자: 작성자 이름</p>
                 <p class="post-date" th:text="'작성일: ' + ${board.createdDate}">작성일: 작성일자</p>
@@ -283,8 +318,9 @@
                 <h2 class="comments-title">댓글 목록</h2>
                 <ul class="comments-list">
                     <li class="comment" th:each="comment : ${comments}">
-                        <span class="comment-author" th:text="${comment.username}">댓글 작성자</span>:
-                        <span class="comment-text" th:text="${comment.content}">댓글 내용</span>
+                        <p class="comment-author" th:text="${comment.username}">댓글 작성자</p>:
+                        <p class="comment-text" th:text="${comment.content}">댓글 내용</p>
+                        <p class="comment-date" th:text="${comment.createdDate}">댓글 작성 시간</p>
                     </li>
                 </ul>
             </div>
