@@ -42,17 +42,17 @@
 </table>
 
 
-<!--마감 관련 (미해결)-->
-<!-- 수정 또는 마감 버튼 -->
-<div>
-    <form th:action="@{/matching/toggle-deadline/{boardId}(boardId=${matching.boardId})}" method="post">
-<!--        <button type="submit" th:text="${matching.boardId.deadline ? '수정하기' : '매칭 마감'}"></button>-->
-        <!-- 확정 버튼 -->
-        <button type="submit" th:text="매칭마감" th:if="${matching.boardId.deadline == false}"></button>
-        <!-- 취소 버튼 -->
-        <button type="submit" th:text="수정하기" th:if="${matching.boardId?.deadline == true}"></button>
-    </form>
-</div>
+<!--&lt;!&ndash;마감 관련 (미해결)&ndash;&gt;-->
+<!--&lt;!&ndash; 수정 또는 마감 버튼 &ndash;&gt;-->
+<!--<div>-->
+<!--    <form th:action="@{/matching/toggle-deadline/{boardId}(boardId=${matching.boardId})}" method="post">-->
+<!--&lt;!&ndash;        <button type="submit" th:text="${matching.boardId.deadline ? '수정하기' : '매칭 마감'}"></button>&ndash;&gt;-->
+<!--        &lt;!&ndash; 확정 버튼 &ndash;&gt;-->
+<!--        <button type="submit" th:text="매칭마감" th:if="${matching.boardId?.deadline == false}"></button>-->
+<!--        &lt;!&ndash; 취소 버튼 &ndash;&gt;-->
+<!--        <button type="submit" th:text="수정하기" th:if="${matching.boardId?.deadline == true}"></button>-->
+<!--    </form>-->
+<!--</div>-->
 
 
 </body>

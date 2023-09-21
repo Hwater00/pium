@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserInfoController {
     private UserInfoService userInfoService;
 
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserInfoController(UserInfoService userInfoService){
+    public UserInfoController(UserInfoService userInfoService, PasswordEncoder passwordEncoder){
+        this.passwordEncoder = passwordEncoder;
         this.userInfoService=userInfoService;
     }
 
@@ -27,6 +30,10 @@ public class UserInfoController {
         return "SignupPage";
     }
 
+    @GetMapping("mainPage")
+    public String goToMain(){
+        return "mainPage";
+    }
 
     @PostMapping("/signup")
     @ApiOperation(value = "회원가입")
@@ -57,7 +64,7 @@ public class UserInfoController {
         if (username != null && checkUserDto.getUsername().equals(username)) {
             // 값이 일치하는 경우
 
-            if (password != null && checkUserDto.getPassword().equals(password)) {
+            if(password != null && passwordEncoder.matches(password,checkUserDto.getPassword())){
                 return "mainPage";
             } else {
                 model.addAttribute("error", "비밀번호를 확인해주세요.");
