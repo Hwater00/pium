@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<h1>게시글 리스트</h1>
+<table>
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>추천</th>
+            <th>댓글</th>
+            <th>작성일</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.boardId}"></td>
+            <td>
+                <a th:href="@{'/board/' + ${board.boardId}}">[[${board.title}]]</a>
+            </td>
+            <td th:text="${board.username}"></td>
+            <td th:text="${board.likeCnt}"></td>
+            <td th:text="${board.commentCount}"></td>
+            <td th:text="${board.createdDate}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

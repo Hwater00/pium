@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Pium</title>
+    <style>
+        .header-buttons {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: flex-end; /* 링크들을 오른쪽으로 정렬 */
+            align-items: center;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+        .header-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #98d583;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .header-buttons a:nth-child(1) {
+            margin-left: 20px; /* 첫 번째 링크의 왼쪽 마진을 제거하여 왼쪽 정렬 */
+        }
+
+        .paging a.page_bt {
+            display: inline-block; /* 버튼들을 가로로 정렬 */
+            margin: 0 5px; /* 각 버튼 사이의 간격 설정 */
+            width: auto; /* 너비 자동 조정 */
+        }
+        #centeredDiv {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            align-items: center; /* 세로 정렬을 위한 설정 */
+        }
+        .links {
+            padding: 10px;
+            border: 1px solid #000;
+        }
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #ddd; /* 밝은 회색으로 변경 */
+            /*background-color: #f5f5f5; !* 배경색 변경 (예: 회색) *!*/
+            margin: 10px 0px 0px 20px; /* 맨 위 여백 추가 */
+            border-radius: 10px; /* 둥근 사각형 테두리 추가 */
+        }
+
+        .link {
+            padding: 10px 20px;
+            margin: 5px;
+            color: #000000;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            background-color: #98d583; /* 배경색 추가 */
+            color: #fff; /* 글자색 추가 */
+            border-radius: 5px; /* 둥근 테두리 추가 */
+        }
+        /* Reset some default styles */
+        body, h3, select, input, button {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .page_tits {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .content {
+            padding: 20px;
+            flex-grow: 1; /* 오른쪽 공간을 채우기 위한 설정 */
+        }
+        .bt_search {
+            font-family: Arial, sans-serif;
+            background-color: #98d583;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        table.tb {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table.tb th, table.tb td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .no_data_msg {
+            font-style: italic;
+            color: #999;
+        }
+
+        .paging {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .page_bt {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #98d583;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .btn_set {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .btns {
+            background-color: #98d583;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .btn_mid {
+            font-size: 16px;
+        }
+        /* 스타일링 추가 */
+        .post-section {
+            margin-top: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .post-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .post-author, .post-date {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .post-text {
+            font-size: 18px;
+        }
+
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comments-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .comments-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .comment {
+            margin-bottom: 15px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .comment-text {
+            font-size: 16px;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .comment-form-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .submit-comment {
+            text-decoration: none;
+            background-color: #98d583;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search_box {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* 왼쪽 정렬로 변경 */
+        }
+    </style>
+</head>
+<body>
+<div id="centeredDiv" class="page_tits">
+    <h3>Pium</h3>
+</div>
+
+
+<div class="header-buttons">
+    <a href="/board/write" style="margin-right: auto;">글작성</a>
+    <div class="search_box" >
+        <form id="searchForm" onsubmit="return false;" autocomplete="off">
+            <div>
+                <select title="검색 유형 선택">
+                    <option value="">제목</option>
+                    <option value="">유저</option>
+                </select>
+                <input type="text" placeholder="검색어를 입력하세요." title="키워드 입력"/>
+                <button type="button" class="bt_search"><i class="fas fa-search"></i><span class="skip_info">검색</span></button>
+            </div>
+        </form>
+    </div>
+    <a href="http://localhost:9090/login">로그인</a>
+    <a href="http://localhost:9090/">회원가입</a>
+    <a href="#">마이페이지</a>
+    <a href="#">로그아웃</a>
+</div>
+<div class="container">
+
+    <div class="links-section">
+        <a class="link" href="http://localhost:9090/category/1/list">〈공지사항〉</a>
+        <a class="link" href="http://localhost:9090/category/2/list">매칭게시판</a>
+        <a class="link" href="http://localhost:9090/category/3/list">리뷰게시판</a>
+        <a class="link" href="http://localhost:9090/category/4/list">번개구해요</a>
+        <a class="link" href="http://localhost:9090/category/5/list">광고게시판</a>
+        <a class="link" href="http://localhost:9090/category/7/list">자유게시판</a>
+    </div>
+
+    <div class="content">
+        <section class="post-section">
+            <!-- 게시글 내용 -->
+            <div class="post-content">
+                <h2 class="post-title" th:text="${board.title}">게시글 제목</h2>
+                <p class="post-author" th:text="'작성자: ' + ${board.username}">작성자: 작성자 이름</p>
+                <p class="post-date" th:text="'작성일: ' + ${board.createdDate}">작성일: 작성일자</p>
+                <div class="post-text" th:text="${board.content}">게시글 내용을 여기에 표시합니다.</div>
+            </div>
+
+            <!-- 댓글 목록 -->
+            <div class="comments-section">
+                <h2 class="comments-title">댓글 목록</h2>
+                <ul class="comments-list">
+                    <li class="comment" th:each="comment : ${comments}">
+                        <span class="comment-author" th:text="${comment.username}">댓글 작성자</span>:
+                        <span class="comment-text" th:text="${comment.content}">댓글 내용</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 댓글 입력 폼 -->
+            <div class="comment-form">
+                <h2 class="comment-form-title">댓글 작성</h2>
+                <textarea class="comment-input" rows="4" placeholder="댓글을 입력하세요" id="commentContent"></textarea>
+                <button class="submit-comment" id="submitComment">댓글 작성</button>
+            </div>
+        </section>
+        <br>
+        <a href="javascript:history.back()" class="submit-comment"> ← 뒤로가기</a>
+    </div>
+</div>
+<!-- JavaScript 코드 추가 -->
+<script>
+    // 페이지 숫자를 클릭했을 때 페이지 이동 함수
+    function goToPage(pageNumber) {
+        // 페이지 이동 로직을 작성합니다.
+        alert("페이지 " + pageNumber + "로 이동합니다.");
+    }
+
+    // 페이지 숫자 요소들에 클릭 이벤트 추가
+    const pageNumbers = document.querySelectorAll('.page-number');
+    pageNumbers.forEach((pageNumberElement) => {
+        pageNumberElement.addEventListener('click', () => {
+            const pageNumber = pageNumberElement.textContent;
+            goToPage(pageNumber);
+        });
+    });
+</script>
+</body>
+</html>
