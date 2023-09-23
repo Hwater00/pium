@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+</head>
+<body>
+    <h1>게시글 목록</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>댓글 수</th>
+            <th>좋아요 수</th>
+            <th>조회 수</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boardList}">
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.username}"></td>
+            <td th:text="${board.commentCount}"></td>
+            <td th:text="${board.likeCnt}"></td>
+            <td th:text="${board.viewCnt}"></td>
+            <td th:text="${board.createdDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

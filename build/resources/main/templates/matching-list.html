@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matching List</title>
+</head>
+<body>
+<h1>트레이너가 받은 매칭 리스트</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>제목</th>
+        <th>내용</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="matching : ${matchingList}">
+        <td th:text="${matching.matchingId}"></td>
+        <td th:text="${matching.title}"></td>
+        <td th:text="${matching.comment}"></td>
+        <td>
+            <form th:action="@{/matching/participate/{matchingId}(matchingId=${matching.matchingId})}" method="post">
+                <!-- 확정 버튼 -->
+                <button type="submit" th:text="확정" th:if="${matching.participate == false}"></button>
+                <!-- 취소 버튼 -->
+                <button type="submit" th:text="취소" th:unless="${matching.participate == false}"></button>
+
+            </form>
+        </td>
+        <!-- 삭제 버튼 -->
+        <td>
+            <form th:action="@{/matching/delete/{matchingId}(matchingId=${matching.matchingId})}" method="post">
+                <button type="submit" th:text="삭제"></button>
+            </form>
+        </td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+
+<!--마감 관련 (미해결)-->
+<!-- 수정 또는 마감 버튼 -->
+<div>
+    <form th:action="@{/matching/toggle-deadline/{boardId}(boardId=${matching.boardId})}" method="post">
+<!--        <button type="submit" th:text="${matching.boardId.deadline ? '수정하기' : '매칭 마감'}"></button>-->
+        <!-- 확정 버튼 -->
+        <button type="submit" th:text="매칭마감" th:if="${matching.boardId.deadline == false}"></button>
+        <!-- 취소 버튼 -->
+        <button type="submit" th:text="수정하기" th:if="${matching.boardId?.deadline == true}"></button>
+    </form>
+</div>
+
+
+</body>
+</html>

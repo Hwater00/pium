@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Matching</title>
+</head>
+<body>
+<h1>매칭 신청</h1>
+
+<form th:action="@{/matching/write}" method="post" th:object="${matchingDto}">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" th:field="*{title}" required>
+    </div>
+
+    <div>
+        <label for="comment">Comment:</label>
+        <input type="text" id="comment" name="comment" th:field="*{comment}" required>
+    </div>
+
+    <div>
+        <button id="participate" type="submit">신청하기</button>
+    </div>
+</form>
+</body>
+</html>

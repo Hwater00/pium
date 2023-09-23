@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <title>PIUM</title>
+
+    <style>
+        .header-buttons {
+            Height: 40px;
+            display: flex;
+            justify-content: flex-end; /* 링크들을 오른쪽으로 정렬 */
+            align-items: center;
+            margin: 0px 10px 0px 200px;
+        }
+
+        .header-buttons a {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            background-color: #98d583;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .paging a.page_bt {
+            display: inline-block; /* 버튼들을 가로로 정렬 */
+            margin: 0 5px; /* 각 버튼 사이의 간격 설정 */
+            width: auto; /* 너비 자동 조정 */
+        }
+        #centeredDiv {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            align-items: center; /* 세로 정렬을 위한 설정 */
+        }
+        .links {
+            padding: 10px;
+            border: 1px solid #000;
+        }
+
+        .links-section {
+            display: flex;
+            display: block;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #ddd; /* 검은색으로 변경 */
+            /*background-color: #f5f5f5; !* 배경색 변경 (예: 회색) *!*/
+            margin: 164px 0px 0px 20px; /* 맨 위 여백 추가 */
+            border-radius: 10px; /* 둥근 사각형 테두리 추가 */
+            position: fixed; /* 화면에 고정 */
+            top: 0; /* 화면 상단에 고정 */
+        }
+
+        .link {
+            padding: 10px 20px;
+            margin: 5px;
+            color: #000000;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            background-color: #98d583; /* 배경색 추가 */
+            color: #fff; /* 글자색 추가 */
+            border-radius: 5px; /* 둥근 테두리 추가 */
+        }
+        /* Reset some default styles */
+        body, h3, select, input, button {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .page_tits {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .content {
+            padding: 20px;
+            flex-grow: 1; /* 오른쪽 공간을 채우기 위한 설정 */
+            margin-left: 175px; /* 왼쪽에서 175px 거리를 둡니다. (2023.09.22.금) */
+            margin-right: 175px; /* 오른쪽에서 175px 거리를 둡니다. (2023.09.22.금) */
+        }
+
+        .search_box {
+            margin-bottom: 20px;
+            margin-left: 5px;
+        }
+
+        .sch_group select, .sch_group input {
+            height: 30px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .bt_search {
+            font-family: Arial, sans-serif;
+            background-color: #98d583;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .skip_info {
+            font-size: 16px;
+        }
+
+        table.tb {
+            /*margin-left: 160px;*/ /* 미관상 보기 안좋아서 주석처리함 (2023.09.22.금) */
+            width: 100%; /* 수정 (2023.09.22.금) */
+            border-collapse: collapse;
+        }
+
+        table.tb th, td {
+            border: 2px solid #ddd; /* 수정 (2023.09.22.금) */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .no_data_msg {
+            font-style: italic;
+            color: #999;
+        }
+
+        .paging {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .page_bt {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #98d583;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .btn_set {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .btns {
+            background-color: #98d583;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .btn_mid {
+            font-size: 16px;
+        }
+
+        hr {
+            border: none; /* 기본 테두리 제거 */
+            border-top: 1px solid #ddd; /* 윗 테두리를 회색으로 설정 */
+            margin: 10px 0; /* 위아래 여백 설정 */
+        }
+        .post-content {
+            width: 100%;
+        }
+        .tr-td-boardId a {
+            text-decoration: none; /* 링크의 밑줄 제거 */
+        }
+        .tr-td-boardTitle {
+            text-align: left; /* 왼쪽 정렬 */
+        }
+        .tr-td-boardTitle a {
+            text-decoration: none; /* 링크의 밑줄 제거 */
+        }
+    </style>
+</head>
+<body>
+<div id="centeredDiv" class="page_tits">
+    <h3>Pium</h3>
+</div>
+
+<div class="container">
+    <div class="links-section">
+        <a class="link" href="/board/form">게시글쓰기</a> <!-- 추가 (2023.09.22.금) -->
+        <a class="link" href="#">쪽지보내기</a> <!-- 추가 (2023.09.22.금) -->
+        <hr> <!-- 추가 (2023.09.22.금) -->
+        <a class="link" href="http://localhost:9090/board/all">전체게시글</a>  <!-- 추가 (2023.09.22.금) -->
+        <a class="link" href="http://localhost:9090/category/1/list">〈공지사항〉</a>
+        <a class="link" href="http://localhost:9090/category/2/list">매칭게시판</a>
+        <a class="link" href="http://localhost:9090/category/3/list">리뷰게시판</a>
+        <a class="link" href="http://localhost:9090/category/4/list">번개구해요</a>
+        <a class="link" href="http://localhost:9090/category/5/list">광고게시판</a>
+        <a class="link" href="http://localhost:9090/category/6/list">자유게시판</a>
+    </div>
+    <div class="content">
+        <section class="post-section"> <!-- 클래스 추가 (2023.09.22.금) -->
+            <div class="header-buttons">
+                <!--    <a href="http://localhost:9090/login">로그인</a>-->
+                <!--    <a href="http://localhost:9090/">회원가입</a>-->
+                <a href="#">마이페이지</a>
+                <a href="#">로그아웃</a>
+            </div>
+            <div class="search_box">
+                <form id="searchForm" action="/board/searchTitle" method="GET" autocomplete="off">
+                    <div class="sch_group">
+                        <select id="searchType" name="searchType" title="검색 유형 선택">
+                            <option value="title">제목</option>
+                            <option value="name">유저</option>
+                        </select>
+                        <input type="text" id="searchKeyword" name="keyword" placeholder="검색어를 입력하세요." title="키워드 입력"/>
+                        <input type="hidden" name="categoryId" value="1" />
+                        <input type="hidden" name="categoryId" value="2" />
+                        <input type="hidden" name="categoryId" value="3" />
+                        <input type="hidden" name="categoryId" value="4" />
+                        <input type="hidden" name="categoryId" value="5" />
+                        <input type="hidden" name="categoryId" value="6" />
+                        <input type="hidden" name="categoryId" value="7" />
+
+                        <button type="submit" class="bt_search"><i class="fas fa-search"></i><span class="skip_info">검색</span></button>
+                    </div>
+                    <a class="left-align"> </a>
+                </form>
+            </div>
+            <div class="post-content">
+                <table class="tb tb_col">
+                    <colgroup>
+                        <col style="width:70px;"/>
+                        <col style="width:90px;"/>
+                        <col style="width:auto;"/>
+                        <col style="width:150px;"/>
+                        <col style="width:80px;"/>
+                        <col style="width:80px;"/>
+                        <col style="width:170px;"/>
+                    </colgroup>
+
+                    <thead style="border: #000000">
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">매칭</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">추천</th>
+                        <th scope="col">댓글수</th>
+                        <th scope="col">등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <tr th:if="${not #lists.isEmpty( boardList )}" th:each="board : ${boardList}">
+                        <td class="tr-td-boardId">
+                            <a th:href="@{'/board/' + ${board.boardId}}" th:text="${board.boardId}"></a>
+                        </td>
+                        <td th:text="${board.participate == false ? '매칭중' : (board.participate == true ? '매칭완료' : '')}"></td>
+                        <td class="tr-td-boardTitle">
+                            <a th:href="@{'/board/' + ${board.boardId}}" th:text="${board.title}"></a>
+                        </td>
+                        <td th:text="${board.username}"></td>
+                        <td th:text="${board.likeCnt}"></td>
+                        <td th:text="${board.commentCount}"></td>
+                        <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm' )}"></td>
+                    </tr>
+
+                    <tr th:unless="${not #lists.isEmpty( boardList )}">
+                        <td colspan="8">
+                            <div class="no_data_msg">검색된 결과가 없습니다.</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 페이지 숫자 및 클릭 이벤트 추가 -->
+            <div class="paging">
+
+                <p>
+                    <span class="on">1</span>
+                    <span class="page-number">2</span>
+                    <span class="page-number">3</span>
+                    <span class="page-number">4</span>
+                    <span class="page-number">5</span>
+                    <span class="page-number">6</span>
+                    <span class="page-number">7</span>
+                    <span class="page-number">8</span>
+                    <span class="page-number">9</span>
+                    <span class="page-number">10</span>
+                </p>
+                <a href="#" class="page_bt first" style="width:100px;" >첫 페이지</a>
+                <a href="#" class="page_bt prev" style="width:100px;" >이전 페이지</a>
+                <a href="#" class="page_bt next" style="width:100px;" >다음 페이지</a>
+                <a href="#" class="page_bt last" >마지막 페이지</a>
+            </div>
+
+        </section>
+    </div>
+</div>
+<!-- JavaScript 코드 추가 -->
+<script>
+    // 페이지 숫자를 클릭했을 때 페이지 이동 함수
+    function goToPage(pageNumber) {
+        // 페이지 이동 로직을 작성합니다.
+        alert("페이지 " + pageNumber + "로 이동합니다.");
+    }
+    // 페이지 숫자 요소들에 클릭 이벤트 추가
+    const pageNumbers = document.querySelectorAll('.page-number');
+    pageNumbers.forEach((pageNumberElement) => {
+        pageNumberElement.addEventListener('click', () => {
+            const pageNumber = pageNumberElement.textContent;
+            goToPage(pageNumber);
+        });
+    });
+</script>
+</body>
+</html>
